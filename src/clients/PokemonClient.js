@@ -1,15 +1,12 @@
+// src/clients/PokemonClient.js
 import axios from "axios";
 
-const consumirApi = async () => {
-    const idPokemon = Math.random(1,2,3,4,5);
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`);
+export async function consumirApi() {
+    const id = Math.floor(Math.random() * 151) + 1;
 
-    return {
-        image: response.data.sprites.front_default,
-        answer: response.data.name
-    };
-};
+    const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${id}`
+    );
 
-export async function consumirApiFacade() {
-    return await consumirApi();
+    return response.data;
 }

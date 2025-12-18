@@ -16,7 +16,7 @@
 
 <script>
 import Quemados from '../components/Quemados.vue';
-import { consumirApiFacade } from '../facade/PokemonFacade.js';
+import { consumirApiFacade } from '../clients/PokemonClient.js';
 
 export default {
 
@@ -58,7 +58,9 @@ export default {
             this.respuesta3 = resp3.answer
 
             this.intentos--;
-            const sumar = (this.respuesta1 == "") + (this.respuesta2 == "") + (this.respuesta3 == "");
+            const sumar = this.respuesta1 === resp.name ? 1 : 0
+                + this.respuesta2 === resp2.name ? 1 : 0
+                + this.respuesta3 === resp3.name ? 1 : 0;
 
             if (sumar == 3) {
                 this.puntaje += 5;
